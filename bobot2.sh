@@ -65,6 +65,7 @@ declare -A my_used_files
 for i in 200 300 400 500 my_catchall $(basename $my_error_log) ; do
     if [ -f  /tmp/$i ] ; then
         my_used_files+="$i "
+        echo "nb entry: $(wc -l /tmp/$i)" | tee -a $my_standard_log
     fi
 done
 echo -e "Please consult : \n$(for i in ${my_used_files[@]} ; do echo /tmp/$i ; done)"
