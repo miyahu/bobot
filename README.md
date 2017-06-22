@@ -1,6 +1,6 @@
 # bobot
 
-Bobot is a crawler bot (a spider)  
+Bobot is a crawling bot (a spider)  
 
 ```bash
         _,--,            _
