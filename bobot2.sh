@@ -2,6 +2,8 @@
 
 # the bot for bobos..
 
+# if dos caracteres in input file, use dos2unix for converting  
+
 my_curl_opts="-v -A Bobot-le-bot -k -s -L"
 my_main_loop_delay="0.05"
 my_curl_timeo="-m 3"
