@@ -33,20 +33,30 @@ case $1 in
     echo starting at line $3 for ending at $4
     # testing seq
 
-    index_my_array=(${!my_map_array[@]})
+    index_my_map_array=(${!my_map_array[@]})
 
     for (( i=$3 ; i<=$4 ; i++ )) ; do
         sleep 0.1
-	    #echo ${index_my_array[$i]}
-	    my_result=$(curl -m 3 -I -A Bobot-le-bot -s http://${server_target}${index_my_array[$i]} |& awk '/Location/ {print$2}')
-        #echo resul $my_result
+	    #echo ${index_my_map_array[$i]}
+	    my_result=$(curl -m 3 -I -A Bobot-le-bot -s http://${server_target}${index_my_map_array[$i]} |& awk '/Location/ {print$2}'| tr -d '\r')
+        #echo $($my_result | tr -d '\r')
         if [[ $my_result  !=  ${my_map_array[$my_source]} ]] ; then
-            echo "line number ${i} - NOK - $my_result for ${my_map_array[$my_source]} expected"A
+            #echo "line number ${i} - NOK - $my_resul"
+            echo "line number ${i} - NOK - ${my_result} and ${my_map_array[$my_source]} expected"
         else
             echo  "line ${i}: ok"
         fi
     done
     ;;
+    random)
+
+    declare -a my_random_array 
+
+    for i in {0..199} ; do
+        my_random_array+="$i"
+        index_my_map_array=(${!my_map_array[@]})
+    done
+    
 esac    
     
 

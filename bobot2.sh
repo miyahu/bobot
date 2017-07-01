@@ -63,7 +63,7 @@ echo "ending at $(date +%D-%T)" | tee -a  $my_standard_log
 export my_ending_time=$(date +%s)
 echo "Time to parsing: $((( ($my_ending_time - $my_starting_time) /60 )))m" | tee -a $my_standard_log
 
-declare -A my_used_files
+declare -a my_used_files
 for i in 200 300 400 500 my_catchall $(basename $my_error_log) ; do
     if [ -f  /tmp/$i ] ; then
         my_used_files+="$i "
