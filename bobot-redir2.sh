@@ -61,15 +61,16 @@ case $1 in
             echo "lnb: $lnb"
             sleep 0.1
 	        #my_result=$(curl -m 3 -I -A Bobot-le-bot -s http://${server_target}${my_index_map_array[$i]} |& awk '/Location/ {print$2}'| tr -d '\r')
-	        my_result=$(curl -m 3 -I -A Bobot-le-bot -s http://${server_target}${my_index_map_array[$lnb]} |& awk '/Location/ {print$2}'| tr -d '\r')
+	        my_result=$(curl -m 3 -I -A Bobot-le-bot -s http://${server_target}${my_index_map_array[$i]} |& awk '/Location/ {print$2}'| tr -d '\r')
             echo "index: $i"
             echo "source: ${my_index_map_array[$i]}"
             echo "result: $my_result"
             #if [[ $my_result  !=  ${my_map_array[${my_index_map_array[$i]}]} ]] ; then
-            #    echo "line number $lnb - NOK - obtain ${my_result} for ${my_map_array[$my_source]} expected"
-            #else
-            #    echo  "line $lnb: ok"
-            #fi
+            if [[ $my_result  !=  ${my_map_array[$i]} ]] ; then
+                echo "line number $lnb - NOK - obtain ${my_result} for ${my_map_array[$my_source]} expected"
+            else
+                echo  "line $lnb: ok"
+            fi
         done
     ;;
     random)
